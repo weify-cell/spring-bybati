@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springmybatis.dao.HelloDao">
+    <insert id="addUser">
+        insert into tb_user (name,age,id) values (#{username},#{age},#{id})
+    </insert>
+
+    <update id="updateUsers">
+        <foreach collection="list" item="item" index="index" separator=";" open="" close=";">
+            update tb_user
+            <set>age=${item.age}
+            </set>
+            where id = ${item.id}
+        </foreach>
+    </update>
+
+    <select id="selectAllUser" resultType="com.example.springmybatis.domain.po.UserPo">
+        SELECT * FROM tb_user
+    </select>
+</mapper>
